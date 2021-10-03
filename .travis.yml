@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t pranov/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t pranov03/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true pranov/react-test npm test
+  - docker run -e CI=true pranov03/react-test npm test
 
 after_success:
-  - docker build -t pranov/multi-client ./client
-  - docker build -t pranov/multi-nginx ./nginx
-  - docker build -t pranov/multi-server ./server
-  - docker build -t pranov/multi-worker ./worker
+  - docker build -t pranov03/multi-client ./client
+  - docker build -t pranov03/multi-nginx ./nginx
+  - docker build -t pranov03/multi-server ./server
+  - docker build -t pranov03/multi-worker ./worker
   #Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # take those images and push them to docker hub
-  - docker push pranov/multi-client
-  - docker push pranov/multi-nginx
-  - docker push pranov/multi-server
-  - docker push pranov/multi-worker
+  - docker push pranov03/multi-client
+  - docker push pranov03/multi-nginx
+  - docker push pranov03/multi-server
+  - docker push pranov03/multi-worker
